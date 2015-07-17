@@ -55,8 +55,10 @@ module.exports = function (grunt) {
         ],
         module: {
           loaders: [
-            { test: /(src)(.+)\.js$/, exclude: /node_modules/, loader: 'babel-loader?blacklist=useStrict' }
+            //{ test: /(src)(.+)\.js$/, exclude: /node_modules/, loader: 'babel-loader?blacklist=useStrict' }
+            { test: /src\/index.js$/, exclude: /node_modules/, loader: 'babel-loader?blacklist=useStrict' }
           ],
+          /*
           preLoaders: [
             {
               test: /(src)(.+)\.js$|(test)(.+)\.js$/, // include .js files
@@ -64,6 +66,7 @@ module.exports = function (grunt) {
               loader: "jshint-loader?failOnHint=true"
             }
           ]
+         */
         }
       }
     }

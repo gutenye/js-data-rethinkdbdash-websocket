@@ -1,11 +1,11 @@
 {
-  "name": "js-data-rethinkdb",
+  "name": "js-data-rethinkdbdash-websocket",
   "description": "RethinkDB adapter for js-data.",
   "version": "2.0.1",
   "homepage": "http://www.js-data.io/docs/dsrethinkdbadapter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/js-data/js-data-rethinkdb.git"
+    "url": "https://github.com/gutenye/js-data-rethinkdbdash-websocket.git"
   },
   "author": {
     "name": "Jason Dobry",
@@ -52,6 +52,6 @@
   },
   "peerDependencies": {
     "js-data": ">=2.0.0",
-    "rethinkdbdash": ">=1.15.0"
+    "rethinkdbdash-websocket-client": "0.2.1"
   }
 }

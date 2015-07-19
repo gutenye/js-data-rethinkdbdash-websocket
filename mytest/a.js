@@ -1,15 +1,9 @@
-Forked from [js-data-rethinkdb](https://github.com/js-data/js-data-rethinkdb)
-
-A rethinkdb websocket adapter for js-data by using [rethinkdbdash-websocket-client](https://github.com/gutenye/rethinkdb-websocket-client).
-
-Usage
-------
-
-```javascript
 var JSData = require("js-data")
 var RethinkdbAdapter = require("js-data-rethinkdb-websocket")
+var pd = console.log.bind(console)
 
 var store = new JSData.DS()
+store.defaults.debug = true
 store.registerAdapter("rethinkdb", new RethinkdbAdapter({
   db: "test",
   host: "localhost",
@@ -19,4 +13,13 @@ store.registerAdapter("rethinkdb", new RethinkdbAdapter({
   secure: false
 }), {default: true})
 var User = store.defineResource("users")
-```
+var cb1 = function(result) {
+  pd("result", result)
+}
+var cb2 = function(err) {
+  pd("error", err)
+}
+
+User.find(1).then(cb1, cb2)
+//User.findAll({where: {id: {'===': 1}}}).then(cb1, cb2)
+//User.create({a: 1}).then(cb1, cb2) // "users.inject: "attrs" must be an object or an array!"

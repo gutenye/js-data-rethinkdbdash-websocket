@@ -1,4 +1,4 @@
-let rethinkdb = require('rethinkdbdash-websocket-client');
+let rethinkdbdash = require('rethinkdbdash-websocket');
 let JSData = require('js-data');
 let { DSUtils } = JSData;
 let { upperCase, contains, forOwn, isEmpty, keys, deepMixIn, forEach, isObject, isArray, isString, removeCircular, omit } = DSUtils;
@@ -31,8 +31,7 @@ class DSRethinkDBAdapter {
     options = options || {};
     this.defaults = new Defaults();
     deepMixIn(this.defaults, options);
-    rethinkdb.configureTcpPolyfill(this.defaults);
-    this.r = rethinkdb.rethinkdbdash(this.defaults);
+    this.r = rethinkdbdash(this.defaults);
     this.databases = {};
     this.tables = {};
     this.indices = {};

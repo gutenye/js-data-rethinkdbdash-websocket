@@ -49,7 +49,7 @@ module.exports =
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var rethinkdb = __webpack_require__(1);
+	var rethinkdbdash = __webpack_require__(1);
 	var JSData = __webpack_require__(29);
 	var DSUtils = JSData.DSUtils;
 	var upperCase = DSUtils.upperCase;
@@ -88,8 +88,7 @@ module.exports =
 	    options = options || {};
 	    this.defaults = new Defaults();
 	    deepMixIn(this.defaults, options);
-	    rethinkdb.configureTcpPolyfill(this.defaults);
-	    this.r = rethinkdb.rethinkdbdash(this.defaults);
+	    this.r = rethinkdbdash(this.defaults);
 	    this.databases = {};
 	    this.tables = {};
 	    this.indices = {};
@@ -585,6 +584,7 @@ module.exports =
 		Object.defineProperty(exports, '__esModule', {
 		  value: true
 		});
+		exports['default'] = main;
 
 		function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -594,8 +594,21 @@ module.exports =
 
 		var _TcpPolyfill = __webpack_require__(43);
 
-		exports.configureTcpPolyfill = _TcpPolyfill.configureTcpPolyfill;
-		exports.rethinkdbdash = _rethinkdbdash2['default'];
+		var _objectAssign = __webpack_require__(62);
+
+		var _objectAssign2 = _interopRequireDefault(_objectAssign);
+
+		function main(options) {
+		  var opt = (0, _objectAssign2['default'])({
+		    path: '/',
+		    secure: false,
+		    wsProtocols: ['binary']
+		  }, options);
+		  (0, _TcpPolyfill.configureTcpPolyfill)(opt);
+		  return (0, _rethinkdbdash2['default'])(opt);
+		}
+
+		module.exports = exports['default'];
 
 	/***/ },
 	/* 2 */
@@ -13620,6 +13633,51 @@ module.exports =
 		}
 
 		module.exports = Pool;
+
+
+	/***/ },
+	/* 62 */
+	/***/ function(module, exports) {
+
+		/* eslint-disable no-unused-vars */
+		'use strict';
+		var hasOwnProperty = Object.prototype.hasOwnProperty;
+		var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+		function toObject(val) {
+			if (val === null || val === undefined) {
+				throw new TypeError('Object.assign cannot be called with null or undefined');
+			}
+
+			return Object(val);
+		}
+
+		module.exports = Object.assign || function (target, source) {
+			var from;
+			var to = toObject(target);
+			var symbols;
+
+			for (var s = 1; s < arguments.length; s++) {
+				from = Object(arguments[s]);
+
+				for (var key in from) {
+					if (hasOwnProperty.call(from, key)) {
+						to[key] = from[key];
+					}
+				}
+
+				if (Object.getOwnPropertySymbols) {
+					symbols = Object.getOwnPropertySymbols(from);
+					for (var i = 0; i < symbols.length; i++) {
+						if (propIsEnumerable.call(from, symbols[i])) {
+							to[symbols[i]] = from[symbols[i]];
+						}
+					}
+				}
+			}
+
+			return to;
+		};
 
 
 	/***/ }

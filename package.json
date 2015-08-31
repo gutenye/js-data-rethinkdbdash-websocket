@@ -1,7 +1,7 @@
 {
   "name": "js-data-rethinkdbdash-websocket",
   "description": "RethinkDB adapter for js-data.",
-  "version": "2.0.1",
+  "version": "2.0.17-1",
   "homepage": "http://www.js-data.io/docs/dsrethinkdbadapter",
   "repository": {
     "type": "git",
@@ -52,6 +52,6 @@
   },
   "peerDependencies": {
     "js-data": ">=2.0.0",
-    "rethinkdbdash-websocket-client": "0.2.1"
+    "rethinkdbdash-websocket": "2.0.17-1"
   }
 }
